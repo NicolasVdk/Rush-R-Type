@@ -51,6 +51,13 @@ void			Interface::displayScore(void)
 	return ;
 }
 
+void			Interface::displayNenemy(void)
+{
+	attron(COLOR_PAIR(7));
+	mvprintw(1, 0, "Enemy: %d", this->_env->getEnemys());
+	return ;
+}
+
 void			Interface::genEnemys(void)
 {
 	int		n = this->_env->getEnemys();
@@ -150,8 +157,8 @@ void			Interface::start(char *av)
 		if (inc_life * 100 <= this->_env->getScore())
 		{
 			inc_life++;
-			if (player1->getLife() > 0) player1->modifLife(1);
-			if (player2->getLife() > 0) player2->modifLife(1);
+			if (player1->getLife() > 0 && player1->getLife() < 5) player1->modifLife(1);
+			if (player2->getLife() > 0 && player2->getLife() < 5) player2->modifLife(1);
 		}
 		this->resize();
 		this->_env->setRate();
@@ -169,6 +176,7 @@ void			Interface::start(char *av)
 				break ;
 			this->displayScore();
 			this->displayLife(player1, player2);
+			this->displayNenemy();
 			this->displayFps();
 			wrefresh(stdscr);
 		}
@@ -212,7 +220,7 @@ void			Interface::start(void)
 		if (inc_life * 100 <= this->_env->getScore())
 		{
 			inc_life++;
-			if (player1->getLife() > 0) player1->modifLife(1);
+			if (player1->getLife() > 0 && player1->getLife() < 5) player1->modifLife(1);
 		}
 		this->resize();
 		this->_env->setRate();
@@ -230,6 +238,7 @@ void			Interface::start(void)
 				break ;
 			this->displayScore();
 			this->displayLife(player1);
+			this->displayNenemy();
 			this->displayFps();
 			wrefresh(stdscr);
 		}

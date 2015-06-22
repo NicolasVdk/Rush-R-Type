@@ -38,8 +38,8 @@ void	Player::Fire()
 		new Bullets(this->_env, this->_x + 1, this->_y, s2, 1, 50.0, 0);
 		new Bullets(this->_env, this->_x - 1, this->_y, s2, 1, 50.0, 0);
 		new Bullets(this->_env, this->_x, this->_y, s2, 1, 50.0, 0);
-		new Bullets(this->_env, this->_x, this->_y + 1, s3, 1, 40.0, 1);
-		new Bullets(this->_env, this->_x, this->_y + 1, s1, 1, 40.0, 2);
+		new Bullets(this->_env, this->_x, this->_y, s3, 1, 40.0, 1);
+		new Bullets(this->_env, this->_x, this->_y, s1, 1, 40.0, 2);
 	}
 	else if (this->_env->getScore() >= 100)
 	{

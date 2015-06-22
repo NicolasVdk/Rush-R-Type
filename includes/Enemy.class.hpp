@@ -16,14 +16,17 @@ class Enemy : public Entity
 		~Enemy( void );
 
 		void		pushEnemy(void);
+		void		dLife(void);
 
 	private:
 		Enemy( void );
 		int		_side;
 		int		_score;
-	
+		int		_wall;
+		int		_aff_boss;
 };
 
 static	int		boss = 1;
+static	int		numberofboss = 0;
 
 #endif

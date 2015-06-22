@@ -53,6 +53,7 @@ class Interface
 		void		displayLife(Player *player, Player *player2);
 		void		displayLife(Player *player);
 		void		displayScore(void);
+		void		displayNenemy(void);
 		void		genEnemys(void);
 		void		resize(void);
 		void		genBackground(std::string *bg);

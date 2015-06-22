@@ -8,7 +8,6 @@
 Entity::Entity(void)
 {
 	this->_env = NULL;
-	std::string form[20] = {"#"};
 	this->_x = 1.0;
 	this->_y = 1.0;
 	this->_life = 1;

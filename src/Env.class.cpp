@@ -67,6 +67,7 @@ void			Env::init_shell(void) const
 	init_pair(11, COLOR_GREEN, COLOR_BLACK);
 	init_color(12, 300, 300, 300);
 	init_pair(13, 12, COLOR_BLACK);
+//	init_color()
 	curs_set(0);
 	noecho();
 	nodelay(stdscr, TRUE);

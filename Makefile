@@ -6,7 +6,7 @@
 #    By: kperreau <kperreau@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/12/05 14:10:51 by kperreau          #+#    #+#              #
-#    Updated: 2015/06/22 17:35:10 by nverdonc         ###   ########.fr        #
+#    Updated: 2015/06/22 20:30:12 by nverdonc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ HEADERS = $(patsubst %, $(INCLUDESDIR)/%, $(HFILES))
 
 # COMPILATION
 
-ERRORFLAGS = -Wall -Werror -Wextra
+ERRORFLAGS = -O3 -Wall -Werror -Wextra
 
 INCLUDEFLAGS = -I $(INCLUDESDIR)/
 
@@ -49,7 +49,7 @@ CC = clang++
 all: $(NAME)
 
 $(NAME): $(OBJ)
-			@$(CC) $(FLAGS) $(OBJ) $(LIB) -o $(NAME)
+			@$(CC) -g $(FLAGS) $(OBJ) $(LIB) -o $(NAME)
 
 re: fclean all
 
@@ -59,5 +59,5 @@ clean:
 fclean: clean
 			@rm -f $(NAME)
 
-%.o: %.c
-			@$(CC) -o $@ -c $< $(FLAGS)
+%.o: %.cpp
+			$(CC) -g -o $@ -c $< 
