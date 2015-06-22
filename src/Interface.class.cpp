@@ -26,21 +26,29 @@ void			Interface::displayFps(void)
 {
 	attron(COLOR_PAIR(7));
 	mvprintw(0, 0, "Fps: %d", this->_env->getRate());
-	return ;	
+	return ;
+}
+
+void			Interface::displayLife(Player *player, Player *player2)
+{
+	attron(COLOR_PAIR(7));
+	mvprintw(0, 12, "P1 : Life: %d", player->getLife());
+	mvprintw(1, 12, "P2 : Life: %d", player2->getLife());
+	return ;
 }
 
 void			Interface::displayLife(Player *player)
 {
 	attron(COLOR_PAIR(7));
-	mvprintw(0, 13, "Life: %d", player->getLife());
-	return ;	
+	mvprintw(0, 12, "Life: %d", player->getLife());
+	return ;
 }
 
 void			Interface::displayScore(void)
 {
 	attron(COLOR_PAIR(7));
-	mvprintw(0, 22, "Score: %d", this->_env->getScore());
-	return ;	
+	mvprintw(0, 26, "Score: %d", this->_env->getScore());
+	return ;
 }
 
 void			Interface::genEnemys(void)
@@ -124,7 +132,7 @@ void			Interface::Over(void)
 	return ;
 }
 
-void			Interface::start(void)
+void			Interface::start(char *av)
 {
 	int				key = 0;
 	std::string     s[] = { "0" };
@@ -133,7 +141,8 @@ void			Interface::start(void)
 	srand(time(0));
 
 	std::string *bg = new std::string[this->_env->getMaxY() + 1];
-	Player   *player = new Player(this->_env, "Player", s2, 5);
+	Player	*player1 = new Player(this->_env, "Player", s2, 5);
+	Player	*player2 = new Player(this->_env, "Player", s2, 5);
 	this->genBackground(bg);
 
 	while (key != ESCAPE)
@@ -153,7 +162,7 @@ void			Interface::start(void)
 			if (this->_env->getPlayers() < 1)
 				break ;
 			this->displayScore();
-			this->displayLife(player);
+			this->displayLife(player1, player2);
 			this->displayFps();
 			wrefresh(stdscr);
 		}
@@ -161,15 +170,71 @@ void			Interface::start(void)
 			mvprintw(this->_env->getMaxY() / 2 + 1, this->_env->getMaxX() / 2 - 3, "PAUSE");
 		switch ((key = getch()))
 		{
-			case TOP: player->moveUp(); break ;
-			case BOTTOM: player->moveDown(); break ;
-			case LEFT: player->moveLeft(); break ;
-			case RIGHT: player->moveRight(); break ;
-			case SPACE: player->Fire(); break ;
+			case TOP: if (player1->getLife() > 0) player1->moveUp(); break ;
+			case BOTTOM: if (player1->getLife() > 0) player1->moveDown(); break ;
+			case LEFT: if (player1->getLife() > 0) player1->moveLeft(); break ;
+			case RIGHT: if (player1->getLife() > 0) player1->moveRight(); break ;
+			case ENTER: if (player1->getLife() > 0) player1->Fire(); break ;
+			case W_K: if (player2->getLife() > 0) player2->moveUp(); break ;
+			case S_K: if (player2->getLife() > 0) player2->moveDown(); break ;
+			case A_K: if (player2->getLife() > 0) player2->moveLeft(); break ;
+			case D_K: if (player2->getLife() > 0) player2->moveRight(); break ;
+			case SPACE: if (player2->getLife() > 0) player2->Fire(); break ;
 			case STOP: stop = !stop; break ;
-			//default: if (key > 0)mvprintw(4, 5, "test: %d", key);
 		}
 	}
+	delete player1;
+	delete player2;
+	this->Over();
+	return ;
+}
+
+void			Interface::start(void)
+{
+	int				key = 0;
+	std::string     s[] = { "0" };
+	std::string     s2[] = { "^" };
+	int				stop = 0;
+	srand(time(0));
+
+	std::string *bg = new std::string[this->_env->getMaxY() + 1];
+	Player	*player1 = new Player(this->_env, "Player", s2, 5);
+	this->genBackground(bg);
+
+	while (key != ESCAPE)
+	{
+		this->resize();
+		this->_env->setRate();
+		if (!stop)
+		{
+			erase();
+			this->background(bg);
+			attron(COLOR_PAIR(7));
+			this->genEnemys();
+			this->_env->collision.moveEnemy();
+			if (this->_env->getPlayers() < 1)
+				break ;
+			this->_env->collision.moveBullet();
+			if (this->_env->getPlayers() < 1)
+				break ;
+			this->displayScore();
+			this->displayLife(player1);
+			this->displayFps();
+			wrefresh(stdscr);
+		}
+		else
+			mvprintw(this->_env->getMaxY() / 2 + 1, this->_env->getMaxX() / 2 - 3, "PAUSE");
+		switch ((key = getch()))
+		{
+			case TOP: if (player1->getLife() > 0) player1->moveUp(); break ;
+			case BOTTOM: if (player1->getLife() > 0) player1->moveDown(); break ;
+			case LEFT: if (player1->getLife() > 0) player1->moveLeft(); break ;
+			case RIGHT: if (player1->getLife() > 0) player1->moveRight(); break ;
+			case SPACE: if (player1->getLife() > 0) player1->Fire(); break ;
+			case STOP: stop = !stop; break ;
+		}
+	}
+	delete player1;
 	this->Over();
 	return ;
 }

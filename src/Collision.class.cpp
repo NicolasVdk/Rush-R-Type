@@ -212,7 +212,6 @@ void				Collision::diePlayer(void)
 					tmp->next->prev = tmp->prev;
 				if (tmp)
 				{
-					delete tmp->player;
 					delete tmp;
 				}
 				tmp = tmp2;
@@ -318,7 +317,6 @@ void				Collision::diePlayerPrint(void)
 					tmp->next->prev = tmp->prev;
 				if (tmp)
 				{
-					delete tmp->player;
 					delete tmp;
 				}
 				tmp = tmp2;

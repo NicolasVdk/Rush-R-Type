@@ -18,6 +18,11 @@
 # define LEFT 260
 # define RIGHT 261
 # define SPACE 32
+# define W_K 119
+# define A_K 97
+# define S_K 115
+# define D_K 100
+# define ENTER 10
 # define STOP 360
 
 # include <iostream>
@@ -35,6 +40,7 @@ class Interface
 		Interface(const Interface & interface);
 		~Interface(void);
 	
+		void		start(char *av);
 		void		start(void);
 	
 		Interface &operator=(const Interface & interface);
@@ -44,6 +50,7 @@ class Interface
 		Env *	_env;
 	
 		void		displayFps(void);
+		void		displayLife(Player *player, Player *player2);
 		void		displayLife(Player *player);
 		void		displayScore(void);
 		void		genEnemys(void);

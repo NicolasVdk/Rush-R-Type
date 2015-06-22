@@ -23,12 +23,15 @@
 int			main(int argc, char **argv)
 {
 	Env				env;
-	Interface		interface(&env);
+	Interface		*interface = new Interface(&env);
 	int				pid;
 
 	pid	= std::system("afplay R-Type.mp3&");
-	
-	interface.start();
+	if (argc == 2 && argv[1][0] == '2')
+		interface->start(argv[1]);
+	else
+		interface->start();
+	delete interface;
 	kill(pid, SIGTERM);
 	return (0);
 }

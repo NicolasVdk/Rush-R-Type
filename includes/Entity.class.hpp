@@ -42,7 +42,7 @@ class Entity
 		double			_speed;
 		int				_life;
 		int				_type;
-		std::string		_display[20];
+		std::string		_display[1];
 		Env				*_env;
 };
 

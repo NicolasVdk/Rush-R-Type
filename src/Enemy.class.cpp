@@ -10,6 +10,7 @@ Enemy::Enemy( Env *e, std::string d[], int l ) : Entity(e, "Enemy", BORDER + ran
 {
 	if (this->_env->getScore() >= 200 && boss == 0)
 	{
+		this->_display[0] = "Y";
 		this->_name = "Boss";
 		boss = 1;
 		this->_x = this->_env->getMaxX() / 2;
@@ -20,12 +21,16 @@ Enemy::Enemy( Env *e, std::string d[], int l ) : Entity(e, "Enemy", BORDER + ran
 	}
 	else if (this->_env->getScore() >= 100 && rand() % 100 < 10)
 	{
+		this->_display[0] = "W";
 		this->_speed = 3.5;
 		this->_type = 3;
 		this->_life = 20;
 	}
 	else if (rand() % 100 < 30)
+	{
+		this->_display[0] = "M";
 		this->_type = 2;
+	}
 	else
 		this->_type = 1;
 	if (this->_x < e->getMaxX()/2)
@@ -77,7 +82,7 @@ void	Enemy::move( void )
 	}
 	else
 	{
-		if (this->_y < 30)
+		if (this->_y < this->_env->getMaxY() / 6)
 			moveDown();
 		else
 			this->_speed += 0.0001;
@@ -93,16 +98,16 @@ void	Enemy::move( void )
 			if (this->_x < 0)
 				this->_side = 0;
 		}
-		if (rand() % (100 * this->_env->getRate()) < 20)
+		if (rand() % (100 * this->_env->getRate()) < 10)
 			this->_side = this->_side == 0 ? 1 : 0;
 		if (this->_life < 100)
 		{
-			if (rand() % (100 * this->_env->getRate()) < 2000)
+			if (rand() % (100 * this->_env->getRate()) < 1000)
 				Fire();
 		}
 		else
 		{
-			if (rand() % (100 * this->_env->getRate()) < 1000)
+			if (rand() % (100 * this->_env->getRate()) < 500)
 				Fire();
 		}
 	}
