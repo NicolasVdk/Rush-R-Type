@@ -98,7 +98,7 @@ void			Interface::genBackground(std::string *bg)
 	{
 		for (int y2 = 0; y2 < y; ++y2)
 		{
-			if (rand() % 100 < 3)
+			if (rand() % 100 < 1)
 				bg[y2].append(".");
 			else
 				bg[y2].append(" ");
@@ -122,11 +122,11 @@ void			Interface::background(std::string *bg)
 	for (int y = 0; y < this->_env->getMaxY(); ++y)
 		mvprintw(((int)p + y) % this->_env->getMaxY(), 0, "%s", bg[y].c_str());
 	if (this->_env->getScore() >= 200)
-		speed = 25.0;
+		speed = 30.0;
 	else if (this->_env->getScore() >= 100)
-		speed = 20.0;
+		speed = 23.0;
 	else
-		speed = 10.0;
+		speed = 15.0;
 	p += speed / (float)this->_env->getRate();
 	attron(COLOR_PAIR(7));
 }
@@ -244,7 +244,7 @@ void			Interface::start(void)
 		}
 		else
 			mvprintw(this->_env->getMaxY() / 2 + 1, this->_env->getMaxX() / 2 - 3, "PAUSE");
-		switch ((key = getch()))
+		switch ((key = wgetch(stdscr)))
 		{
 			case TOP: if (player1->getLife() > 0) player1->moveUp(); break ;
 			case BOTTOM: if (player1->getLife() > 0) player1->moveDown(); break ;

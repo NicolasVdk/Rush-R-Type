@@ -28,5 +28,5 @@ class Enemy : public Entity
 
 static	int		boss = 1;
 static	int		numberofboss = 0;
-
+static	int		look = 0;
 #endif

@@ -37,7 +37,7 @@ int		Bullets::getDir( void ) const
 void	Bullets::printBullet(void) const
 {
 	if (this->_dir > 0)
-		attron(COLOR_PAIR(10));
+		attron(COLOR_PAIR(14));
 	else
 		attron(COLOR_PAIR(11));
 	mvprintw(this->_y, this->_x, "%s", this->_display[0].c_str());

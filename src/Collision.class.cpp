@@ -170,7 +170,7 @@ void				Collision::dieBullet(void)
 		tmp = this->_beginBullet;
 		while (tmp)
 		{
-			if (tmp->bullet->getLife() <= 0)
+			if (tmp->bullet->getLife() <= 0 /*|| tmp->bullet->getY() < 0 || tmp->bullet->getY() > _env->getMaxY()*/)
 			{
 				if (tmp->next)
 					tmp2 = tmp->next;
@@ -270,7 +270,7 @@ void				Collision::dieBulletPrint(void)
 		tmp = this->_beginBullet;
 		while (tmp)
 		{
-			if (tmp->bullet->getLife() <= 0 || tmp->bullet->getY() < 0 || tmp->bullet->getY() > _env->getMaxY())
+			if (tmp->bullet->getLife() <= 0 /*|| tmp->bullet->getY() < 0 || tmp->bullet->getY() > _env->getMaxY()*/)
 			{
 				if (tmp == this->_beginBullet)
 					this->_beginBullet = tmp->next;

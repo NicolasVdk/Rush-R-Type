@@ -77,7 +77,9 @@ void	Enemy::pushEnemy(void)
 void	Enemy::dLife(void)
 {
 	attron(COLOR_PAIR(7));
-	mvprintw(this->_aff_boss, 40, "Boss life: %d", this->_life);
+	mvprintw(look++, 40, "Boss life: %d", this->_life);
+	if (look == numberofboss)
+		look = 0;
 	return ;
 }
 
@@ -223,5 +225,8 @@ Enemy & Enemy::operator=( Enemy const & rhs )
 Enemy::~Enemy( void )
 {
 	if (this->_type == 4)
+	{
 		boss = 2;
+		numberofboss--;
+	}
 }

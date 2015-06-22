@@ -6,7 +6,7 @@
 /*   By: kperreau <kperreau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 13:53:32 by kperreau          #+#    #+#             */
-/*   Updated: 2015/06/21 23:21:38 by kperreau         ###   ########.fr       */
+//   Updated: 2015/06/22 22:35:13 by nverdonc         ###   ########.fr       //
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ int			main(int argc, char **argv)
 	Interface		*interface = new Interface(&env);
 	int				pid;
 
-	pid	= std::system("afplay R-Type.mp3&");
+//	pid	= std::system("afplay R-Type.mp3&");
 	if (argc == 2 && argv[1][0] == '2')
 		interface->start(argv[1]);
 	else
 		interface->start();
 	delete interface;
-	kill(pid, SIGTERM);
+//	kill(pid, SIGTERM);
 	return (0);
 }

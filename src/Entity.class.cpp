@@ -109,6 +109,8 @@ void				Entity::moveRight(void)
 
 void				Entity::printEntity(void)
 {
+	if (this->_name == "Player")
+		attron(COLOR_PAIR(10));
 	mvprintw(this->_y, this->_x, "%s", this->_display[0].c_str());
 
 	//for (int i = 0; i < 1; i++)
