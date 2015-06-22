@@ -138,7 +138,7 @@ void				Collision::dieEnemy(void)
 			{
 				this->_env->setEnemys(this->_env->getEnemys() - 1);
 				if (tmp->enemy->getLife() <= 0)
-					_env->addScore(10);
+					_env->addScore(tmp->enemy->getScore());
 				if (tmp == this->_beginEnemy)
 					this->_beginEnemy = tmp->next;
 				if (tmp->next)
@@ -236,7 +236,7 @@ void				Collision::dieEnemyPrint(void)
 			{
 				this->_env->setEnemys(this->_env->getEnemys() - 1);
 				if (tmp->enemy->getLife() <= 0)
-					_env->addScore(10);
+					_env->addScore(tmp->enemy->getScore());
 				if (tmp == this->_beginEnemy)
 					this->_beginEnemy = tmp->next;
 				tmp2 = tmp->next;

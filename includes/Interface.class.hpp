@@ -60,4 +60,6 @@ class Interface
 		void		Over(void);
 };
 
+static	int	inc_life = 1;
+
 #endif

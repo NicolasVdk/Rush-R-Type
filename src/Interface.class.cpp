@@ -55,10 +55,10 @@ void			Interface::genEnemys(void)
 {
 	int		n = this->_env->getEnemys();
 
-	if (n < 20)
+	if (n < (20 + (this->_env->getScore() / 100)) * this->_env->getPlayers())
 	{
 		std::string     s[] = { "0" };
-		for (int i = n; i < 20; ++i)
+		for (int i = n - (this->_env->getScore() / 100); i < (20 + (this->_env->getScore() / 100)) * this->_env->getPlayers(); ++i)
 		{
 			if (rand() % (100 * this->_env->getRate()) < 7)
 			{
@@ -147,6 +147,12 @@ void			Interface::start(char *av)
 
 	while (key != ESCAPE)
 	{
+		if (inc_life * 100 <= this->_env->getScore())
+		{
+			inc_life++;
+			if (player1->getLife() > 0) player1->modifLife(1);
+			if (player2->getLife() > 0) player2->modifLife(1);
+		}
 		this->resize();
 		this->_env->setRate();
 		if (!stop)
@@ -203,6 +209,11 @@ void			Interface::start(void)
 
 	while (key != ESCAPE)
 	{
+		if (inc_life * 100 <= this->_env->getScore())
+		{
+			inc_life++;
+			if (player1->getLife() > 0) player1->modifLife(1);
+		}
 		this->resize();
 		this->_env->setRate();
 		if (!stop)

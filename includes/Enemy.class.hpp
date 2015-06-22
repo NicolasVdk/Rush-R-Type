@@ -11,6 +11,7 @@ class Enemy : public Entity
 		Enemy( Enemy const & src);
 		void	move( void );
 		void	Fire( void );
+		int		getScore( void );
 		Enemy & operator=( Enemy const & rhs);
 		~Enemy( void );
 
@@ -19,9 +20,10 @@ class Enemy : public Entity
 	private:
 		Enemy( void );
 		int		_side;
+		int		_score;
 	
 };
 
-static	int		boss = 0;
+static	int		boss = 1;
 
 #endif
