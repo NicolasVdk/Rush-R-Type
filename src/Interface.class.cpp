@@ -205,6 +205,7 @@ void			Interface::start(char *av)
 
 void			Interface::start(void)
 {
+	char			buffsize[1024];
 	int				key = 0;
 	std::string     s[] = { "0" };
 	std::string     s2[] = { "^" };
@@ -244,7 +245,7 @@ void			Interface::start(void)
 		}
 		else
 			mvprintw(this->_env->getMaxY() / 2 + 1, this->_env->getMaxX() / 2 - 3, "PAUSE");
-		switch ((key = wgetch(stdscr)))
+		switch ((key = getch()))
 		{
 			case TOP: if (player1->getLife() > 0) player1->moveUp(); break ;
 			case BOTTOM: if (player1->getLife() > 0) player1->moveDown(); break ;

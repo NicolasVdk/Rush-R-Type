@@ -147,11 +147,10 @@ void				Collision::dieEnemy(void)
 					tmp->prev->next = tmp->next;
 				if (tmp->next)
 					tmp->next->prev = tmp->prev;
-				if (tmp)
-				{
+				if (tmp->enemy)
 					delete tmp->enemy;
+				if (tmp)
 					delete tmp;
-				}
 				tmp = tmp2;
 			}
 			else
@@ -170,7 +169,7 @@ void				Collision::dieBullet(void)
 		tmp = this->_beginBullet;
 		while (tmp)
 		{
-			if (tmp->bullet->getLife() <= 0 /*|| tmp->bullet->getY() < 0 || tmp->bullet->getY() > _env->getMaxY()*/)
+			if (tmp->bullet->getLife() <= 0)
 			{
 				if (tmp->next)
 					tmp2 = tmp->next;
@@ -178,11 +177,10 @@ void				Collision::dieBullet(void)
 					tmp->prev->next = tmp->next;
 				if (tmp->next)
 					tmp->next->prev = tmp->prev;
-				if (tmp)
-				{
+				if (tmp->bullet && tmp)
 					delete tmp->bullet;
+				if (tmp)
 					delete tmp;
-				}
 				tmp = tmp2;
 			}
 			else
@@ -211,9 +209,7 @@ void				Collision::diePlayer(void)
 				if (tmp->next)
 					tmp->next->prev = tmp->prev;
 				if (tmp)
-				{
 					delete tmp;
-				}
 				tmp = tmp2;
 			}
 			else
@@ -244,11 +240,10 @@ void				Collision::dieEnemyPrint(void)
 					tmp->prev->next = tmp->next;
 				if (tmp->next)
 					tmp->next->prev = tmp->prev;
-				if (tmp)
-				{
+				if (tmp->enemy && tmp)
 					delete tmp->enemy;
+				if (tmp)
 					delete tmp;
-				}
 				tmp = tmp2;
 			}
 			else
@@ -270,7 +265,7 @@ void				Collision::dieBulletPrint(void)
 		tmp = this->_beginBullet;
 		while (tmp)
 		{
-			if (tmp->bullet->getLife() <= 0 /*|| tmp->bullet->getY() < 0 || tmp->bullet->getY() > _env->getMaxY()*/)
+			if (tmp->bullet->getLife() <= 0)
 			{
 				if (tmp == this->_beginBullet)
 					this->_beginBullet = tmp->next;
@@ -279,16 +274,16 @@ void				Collision::dieBulletPrint(void)
 					tmp->prev->next = tmp->next;
 				if (tmp->next)
 					tmp->next->prev = tmp->prev;
-				if (tmp)
-				{
+				if (tmp->bullet && tmp)
 					delete tmp->bullet;
+				if (tmp)
 					delete tmp;
-				}
 				tmp = tmp2;
 			}
 			else
 			{
-				tmp->bullet->printBullet();
+				if (tmp->bullet)
+					tmp->bullet->printBullet();
 				tmp = tmp->next;
 			}
 		}
@@ -316,9 +311,7 @@ void				Collision::diePlayerPrint(void)
 				if (tmp->next)
 					tmp->next->prev = tmp->prev;
 				if (tmp)
-				{
 					delete tmp;
-				}
 				tmp = tmp2;
 			}
 			else
@@ -373,6 +366,8 @@ void			Collision::colEnemyBullet(void)
 					tmpE->enemy->modifLife(-1);
 					tmpB->bullet->modifLife(-1);
 				}
+				else if (tmpB->bullet->getY() < 0 || tmpB->bullet->getY() > _env->getMaxY())
+					tmpB->bullet->modifLife(-1);
 				tmpB = tmpB->next;
 			}
 			tmpE = tmpE->next;
@@ -399,6 +394,8 @@ void			Collision::colBulletPlayer(void)
 					tmpB->bullet->modifLife(-1);
 					tmpP->player->modifLife(-1);
 				}
+				else if (tmpB->bullet->getY() < 0 || tmpB->bullet->getY() > _env->getMaxY())
+					tmpB->bullet->modifLife(-1);
 				tmpP = tmpP->next;
 			}
 			tmpB = tmpB->next;
@@ -419,7 +416,8 @@ void			Collision::moveEnemy(void)
 		tmpB = this->_beginBullet;
 		while (tmpE)
 		{
-			tmpE->enemy->move();
+			if (tmpE->enemy)
+				tmpE->enemy->move();
 			tmpE = tmpE->next;
 		}
 		this->colEnemyPlayer();
@@ -443,7 +441,8 @@ void			Collision::moveBullet(void)
 		tmpB = this->_beginBullet;
 		while (tmpB)
 		{
-			tmpB->bullet->move();
+			if (tmpB->bullet)
+				tmpB->bullet->move();
 			tmpB = tmpB->next;
 		}
 		this->colBulletPlayer();
