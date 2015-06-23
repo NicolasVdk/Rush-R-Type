@@ -134,7 +134,7 @@ void				Collision::dieEnemy(void)
 		tmp = this->_beginEnemy;
 		while (tmp)
 		{
-			if (tmp->enemy->getLife() <= 0 || tmp->enemy->getY() > _env->getMaxY())
+			if (tmp->enemy->getLife() <= 0 || tmp->enemy->getY() < 0 || tmp->enemy->getY() > this->_env->getMaxY())
 			{
 				this->_env->setEnemys(this->_env->getEnemys() - 1);
 				if (tmp->enemy->getLife() <= 0)
@@ -143,6 +143,8 @@ void				Collision::dieEnemy(void)
 					this->_beginEnemy = tmp->next;
 				if (tmp->next)
 					tmp2 = tmp->next;
+				else
+					tmp2 = NULL;
 				if (tmp->prev)
 					tmp->prev->next = tmp->next;
 				if (tmp->next)
@@ -169,10 +171,12 @@ void				Collision::dieBullet(void)
 		tmp = this->_beginBullet;
 		while (tmp)
 		{
-			if (tmp->bullet->getLife() <= 0)
+			if (tmp->bullet->getLife() <= 0 || tmp->bullet->getY() < 0 || tmp->bullet->getY() > this->_env->getMaxY())
 			{
 				if (tmp->next)
 					tmp2 = tmp->next;
+				else
+					tmp2 = NULL;
 				if (tmp->prev)
 					tmp->prev->next = tmp->next;
 				if (tmp->next)
@@ -204,6 +208,8 @@ void				Collision::diePlayer(void)
 				this->_env->setPlayers(this->_env->getPlayers() - 1);
 				if (tmp->next)
 					tmp2 = tmp->next;
+				else
+					tmp2 = NULL;
 				if (tmp->prev)
 					tmp->prev->next = tmp->next;
 				if (tmp->next)
@@ -228,14 +234,17 @@ void				Collision::dieEnemyPrint(void)
 		tmp = this->_beginEnemy;
 		while (tmp)
 		{
-			if (tmp->enemy->getLife() <= 0 || tmp->enemy->getY() > _env->getMaxY())
+			if (tmp->enemy->getLife() <= 0)
 			{
 				this->_env->setEnemys(this->_env->getEnemys() - 1);
 				if (tmp->enemy->getLife() <= 0)
 					_env->addScore(tmp->enemy->getScore());
 				if (tmp == this->_beginEnemy)
 					this->_beginEnemy = tmp->next;
-				tmp2 = tmp->next;
+				if (tmp->next)
+					tmp2 = tmp->next;
+				else
+					tmp2 = NULL;
 				if (tmp->prev)
 					tmp->prev->next = tmp->next;
 				if (tmp->next)
@@ -265,11 +274,14 @@ void				Collision::dieBulletPrint(void)
 		tmp = this->_beginBullet;
 		while (tmp)
 		{
-			if (tmp->bullet->getLife() <= 0)
+			if (tmp->bullet->getLife() <= 0 || tmp->bullet->getY() < 0 || tmp->bullet->getY() > this->_env->getMaxY())
 			{
 				if (tmp == this->_beginBullet)
 					this->_beginBullet = tmp->next;
-				tmp2 = tmp->next;
+				if (tmp->next)
+					tmp2 = tmp->next;
+				else
+					tmp2 = NULL;
 				if (tmp->prev)
 					tmp->prev->next = tmp->next;
 				if (tmp->next)
@@ -305,7 +317,10 @@ void				Collision::diePlayerPrint(void)
 				this->_env->setPlayers(this->_env->getPlayers() - 1);
 				if (tmp == this->_beginPlayer)
 					this->_beginPlayer = tmp->next;
-				tmp2 = tmp->next;
+				if (tmp->next)
+					tmp2 = tmp->next;
+				else
+					tmp2 = NULL;
 				if (tmp->prev)
 					tmp->prev->next = tmp->next;
 				if (tmp->next)
@@ -366,8 +381,6 @@ void			Collision::colEnemyBullet(void)
 					tmpE->enemy->modifLife(-1);
 					tmpB->bullet->modifLife(-1);
 				}
-				else if (tmpB->bullet->getY() < 0 || tmpB->bullet->getY() > _env->getMaxY())
-					tmpB->bullet->modifLife(-1);
 				tmpB = tmpB->next;
 			}
 			tmpE = tmpE->next;
@@ -394,8 +407,6 @@ void			Collision::colBulletPlayer(void)
 					tmpB->bullet->modifLife(-1);
 					tmpP->player->modifLife(-1);
 				}
-				else if (tmpB->bullet->getY() < 0 || tmpB->bullet->getY() > _env->getMaxY())
-					tmpB->bullet->modifLife(-1);
 				tmpP = tmpP->next;
 			}
 			tmpB = tmpB->next;
