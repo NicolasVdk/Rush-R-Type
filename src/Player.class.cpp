@@ -20,6 +20,7 @@ Player::Player( Player const & src ) : Entity(src)
 
 Player & Player::operator=( Player const & rhs )
 {
+	(void)rhs;
 	return (*this);
 }
 

@@ -50,6 +50,7 @@ void	Bullets::pushBullet(void)
 
 Bullets & Bullets::operator=( Bullets const & rhs )
 {
+	(void)rhs;
 	return (*this);
 }
 

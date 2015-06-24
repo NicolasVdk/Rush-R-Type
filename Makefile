@@ -6,7 +6,7 @@
 #    By: kperreau <kperreau@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/12/05 14:10:51 by kperreau          #+#    #+#              #
-#    Updated: 2015/06/22 20:30:12 by nverdonc         ###   ########.fr        #
+#    Updated: 2015/06/24 21:35:00 by kperreau         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,4 +60,4 @@ fclean: clean
 			@rm -f $(NAME)
 
 %.o: %.cpp
-			$(CC) -g -o $@ -c $< 
+			$(CC) $(FLAGS) -g -o $@ -c $< 

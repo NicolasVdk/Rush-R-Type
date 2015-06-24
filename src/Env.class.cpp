@@ -6,7 +6,7 @@
 /*   By: kperreau <kperreau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 18:54:44 by kperreau          #+#    #+#             */
-/*   Updated: 2015/06/21 21:52:47 by kperreau         ###   ########.fr       */
+/*   Updated: 2015/06/24 21:09:08 by kperreau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ Env::Env( void ) : collision(this)
 
 Env::Env(Collision *e) : collision(this)
 {
+	(void)e;
 	this->_score = 0;
 	this->init_shell();
 	this->_maxX = getmaxx(stdscr);

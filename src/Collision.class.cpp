@@ -6,7 +6,7 @@
 /*   By: bdurst <bdurst@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 18:00:43 by bdurst            #+#    #+#             */
-/*   Updated: 2015/06/21 22:45:10 by kperreau         ###   ########.fr       */
+/*   Updated: 2015/06/24 21:32:01 by kperreau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "../includes/Collision.class.hpp"
 #include "../includes/Env.class.hpp"
 
-Collision::Collision(Env *e) : _beginEnemy(NULL), _beginPlayer(NULL), _beginBullet(NULL), _env(e)
+Collision::Collision(Env *e) : _env(e), _beginEnemy(NULL),  _beginPlayer(NULL), _beginBullet(NULL)
 {
 	return ;
 }
@@ -141,10 +141,11 @@ void				Collision::dieEnemy(void)
 					_env->addScore(tmp->enemy->getScore());
 				if (tmp == this->_beginEnemy)
 					this->_beginEnemy = tmp->next;
-				if (tmp->next)
+				tmp2 = tmp->next;
+				/*if (tmp->next)
 					tmp2 = tmp->next;
 				else
-					tmp2 = NULL;
+					tmp2 = NULL;*/
 				if (tmp->prev)
 					tmp->prev->next = tmp->next;
 				if (tmp->next)
@@ -173,10 +174,13 @@ void				Collision::dieBullet(void)
 		{
 			if (tmp->bullet->getLife() <= 0 || tmp->bullet->getY() < 0 || tmp->bullet->getY() > this->_env->getMaxY())
 			{
-				if (tmp->next)
+				if (tmp == this->_beginBullet)
+					this->_beginBullet = tmp->next;	
+				tmp2 = tmp->next;
+				/*if (tmp->next)
 					tmp2 = tmp->next;
 				else
-					tmp2 = NULL;
+					tmp2 = NULL;*/
 				if (tmp->prev)
 					tmp->prev->next = tmp->next;
 				if (tmp->next)
@@ -206,10 +210,13 @@ void				Collision::diePlayer(void)
 			if (tmp->player->getLife() <= 0)
 			{
 				this->_env->setPlayers(this->_env->getPlayers() - 1);
-				if (tmp->next)
+				if (tmp == this->_beginPlayer)
+					this->_beginPlayer = tmp->next;	
+				tmp2 = tmp->next;
+				/*if (tmp->next)
 					tmp2 = tmp->next;
 				else
-					tmp2 = NULL;
+					tmp2 = NULL;*/
 				if (tmp->prev)
 					tmp->prev->next = tmp->next;
 				if (tmp->next)
@@ -241,10 +248,11 @@ void				Collision::dieEnemyPrint(void)
 					_env->addScore(tmp->enemy->getScore());
 				if (tmp == this->_beginEnemy)
 					this->_beginEnemy = tmp->next;
-				if (tmp->next)
+				tmp2 = tmp->next;
+				/*if (tmp->next)
 					tmp2 = tmp->next;
 				else
-					tmp2 = NULL;
+					tmp2 = NULL;*/
 				if (tmp->prev)
 					tmp->prev->next = tmp->next;
 				if (tmp->next)
@@ -278,10 +286,11 @@ void				Collision::dieBulletPrint(void)
 			{
 				if (tmp == this->_beginBullet)
 					this->_beginBullet = tmp->next;
-				if (tmp->next)
+				tmp2 = tmp->next;
+				/*if (tmp->next)
 					tmp2 = tmp->next;
 				else
-					tmp2 = NULL;
+					tmp2 = NULL;*/
 				if (tmp->prev)
 					tmp->prev->next = tmp->next;
 				if (tmp->next)
@@ -317,10 +326,11 @@ void				Collision::diePlayerPrint(void)
 				this->_env->setPlayers(this->_env->getPlayers() - 1);
 				if (tmp == this->_beginPlayer)
 					this->_beginPlayer = tmp->next;
-				if (tmp->next)
+				tmp2 = tmp->next;
+				/*if (tmp->next)
 					tmp2 = tmp->next;
 				else
-					tmp2 = NULL;
+					tmp2 = NULL;*/
 				if (tmp->prev)
 					tmp->prev->next = tmp->next;
 				if (tmp->next)

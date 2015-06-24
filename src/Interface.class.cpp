@@ -6,7 +6,7 @@
 /*   By: kperreau <kperreau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 19:16:59 by kperreau          #+#    #+#             */
-/*   Updated: 2015/06/21 23:07:52 by kperreau         ###   ########.fr       */
+/*   Updated: 2015/06/24 21:07:57 by kperreau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,8 @@ void			Interface::start(char *av)
 	int				stop = 0;
 	srand(time(0));
 
+	(void)s;
+	(void)av;
 	std::string *bg = new std::string[this->_env->getMaxY() + 1];
 	Player	*player1 = new Player(this->_env, "Player", s2, 5);
 	Player	*player2 = new Player(this->_env, "Player", s2, 5);
@@ -212,6 +214,8 @@ void			Interface::start(void)
 	int				stop = 0;
 	srand(time(0));
 
+	(void)s;
+	(void)buffsize;
 	std::string *bg = new std::string[this->_env->getMaxY() + 1];
 	Player	*player1 = new Player(this->_env, "Player", s2, 5);
 	this->genBackground(bg);

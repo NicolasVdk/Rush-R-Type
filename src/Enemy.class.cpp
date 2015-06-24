@@ -178,6 +178,7 @@ void	Enemy::Fire()
 			std::string		s1[] = { "/" };
 			std::string		s2[] = { "|" };
 			std::string		s3[] = { "\\" };
+			(void)s3;
 			new Bullets(this->_env, this->_x + 1, this->_y + 1, s1, 0, 17.0, 1);
 			new Bullets(this->_env, this->_x + 1, this->_y + 1, s2, 0, 18.0, 0);
 			new Bullets(this->_env, this->_x + 1, this->_y + 1, s2, 0, 16.0, 0);
@@ -189,6 +190,7 @@ void	Enemy::Fire()
 			std::string		s1[] = { "/" };
 			std::string		s2[] = { "|" };
 			std::string		s3[] = { "\\" };
+			(void)s3;
 			new Bullets(this->_env, this->_x, this->_y + 1, s1, 0, 17.0, 1);
 			new Bullets(this->_env, this->_x, this->_y + 1, s2, 0, 18.0, 0);
 			new Bullets(this->_env, this->_x, this->_y + 1, s2, 0, 17.0, 2);
@@ -199,6 +201,7 @@ void	Enemy::Fire()
 		std::string		s1[] = { "/" };
 		std::string		s2[] = { "|" };
 		std::string		s3[] = { "\\" };
+		(void)s3;
 		new Bullets(this->_env, this->_x, this->_y + 1, s1, 0, 17.0, 1);
 		new Bullets(this->_env, this->_x, this->_y + 1, s2, 0, 18.0, 0);
 		new Bullets(this->_env, this->_x, this->_y + 1, s2, 0, 17.0, 2);
@@ -219,6 +222,7 @@ void	Enemy::Fire()
 
 Enemy & Enemy::operator=( Enemy const & rhs )
 {
+	(void)rhs;
 	return (*this);
 }
 
