@@ -62,10 +62,10 @@ void			Interface::genEnemys(void)
 {
 	int		n = this->_env->getEnemys();
 
-	if (n < (20 + (this->_env->getScore() / 100)) * this->_env->getPlayers())
+	if (n < (15 + (this->_env->getScore() / 200)) /** this->_env->getPlayers()*/)
 	{
 		std::string     s[] = { "0" };
-		for (int i = n - (this->_env->getScore() / 100); i < (20 + (this->_env->getScore() / 100)) * this->_env->getPlayers(); ++i)
+		for (int i = n; i < (15 + (this->_env->getScore() / 100)) * this->_env->getPlayers(); ++i)
 		{
 			if (rand() % (100 * this->_env->getRate()) < 7)
 			{
