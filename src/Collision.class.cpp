@@ -6,7 +6,7 @@
 /*   By: bdurst <bdurst@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 18:00:43 by bdurst            #+#    #+#             */
-/*   Updated: 2015/06/24 21:32:01 by kperreau         ###   ########.fr       */
+/*   Updated: 2015/06/24 21:45:09 by kperreau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,10 +142,6 @@ void				Collision::dieEnemy(void)
 				if (tmp == this->_beginEnemy)
 					this->_beginEnemy = tmp->next;
 				tmp2 = tmp->next;
-				/*if (tmp->next)
-					tmp2 = tmp->next;
-				else
-					tmp2 = NULL;*/
 				if (tmp->prev)
 					tmp->prev->next = tmp->next;
 				if (tmp->next)
@@ -177,10 +173,6 @@ void				Collision::dieBullet(void)
 				if (tmp == this->_beginBullet)
 					this->_beginBullet = tmp->next;	
 				tmp2 = tmp->next;
-				/*if (tmp->next)
-					tmp2 = tmp->next;
-				else
-					tmp2 = NULL;*/
 				if (tmp->prev)
 					tmp->prev->next = tmp->next;
 				if (tmp->next)
@@ -213,10 +205,6 @@ void				Collision::diePlayer(void)
 				if (tmp == this->_beginPlayer)
 					this->_beginPlayer = tmp->next;	
 				tmp2 = tmp->next;
-				/*if (tmp->next)
-					tmp2 = tmp->next;
-				else
-					tmp2 = NULL;*/
 				if (tmp->prev)
 					tmp->prev->next = tmp->next;
 				if (tmp->next)
@@ -249,10 +237,6 @@ void				Collision::dieEnemyPrint(void)
 				if (tmp == this->_beginEnemy)
 					this->_beginEnemy = tmp->next;
 				tmp2 = tmp->next;
-				/*if (tmp->next)
-					tmp2 = tmp->next;
-				else
-					tmp2 = NULL;*/
 				if (tmp->prev)
 					tmp->prev->next = tmp->next;
 				if (tmp->next)
@@ -287,10 +271,6 @@ void				Collision::dieBulletPrint(void)
 				if (tmp == this->_beginBullet)
 					this->_beginBullet = tmp->next;
 				tmp2 = tmp->next;
-				/*if (tmp->next)
-					tmp2 = tmp->next;
-				else
-					tmp2 = NULL;*/
 				if (tmp->prev)
 					tmp->prev->next = tmp->next;
 				if (tmp->next)
@@ -327,10 +307,6 @@ void				Collision::diePlayerPrint(void)
 				if (tmp == this->_beginPlayer)
 					this->_beginPlayer = tmp->next;
 				tmp2 = tmp->next;
-				/*if (tmp->next)
-					tmp2 = tmp->next;
-				else
-					tmp2 = NULL;*/
 				if (tmp->prev)
 					tmp->prev->next = tmp->next;
 				if (tmp->next)
