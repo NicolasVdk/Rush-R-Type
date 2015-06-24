@@ -46,4 +46,8 @@ class Entity
 		Env				*_env;
 };
 
+static	std::string s1[] = {"/"};
+static	std::string s2[] = {"|"};
+static	std::string s3[] = {"\\"};
+
 #endif

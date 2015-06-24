@@ -33,9 +33,6 @@ void	Player::Fire()
 {
 	if (this->_env->getScore() >= 500)
 	{
-		std::string		s1[] = { "/" };
-		std::string		s2[] = { "|" };
-		std::string		s3[] = { "\\" };
 		new Bullets(this->_env, this->_x + 1, this->_y, s2, 1, 50.0, 0);
 		new Bullets(this->_env, this->_x - 1, this->_y, s2, 1, 50.0, 0);
 		new Bullets(this->_env, this->_x, this->_y, s2, 1, 50.0, 0);
@@ -44,15 +41,13 @@ void	Player::Fire()
 	}
 	else if (this->_env->getScore() >= 100)
 	{
-		std::string		s[] = { "|" };
-		new Bullets(this->_env, this->_x + 1, this->_y, s, 1, 50.0, 0);
-		new Bullets(this->_env, this->_x - 1, this->_y, s, 1, 50.0, 0);
-		new Bullets(this->_env, this->_x, this->_y, s, 1, 50.0, 0);
+		new Bullets(this->_env, this->_x + 1, this->_y, s2, 1, 50.0, 0);
+		new Bullets(this->_env, this->_x - 1, this->_y, s2, 1, 50.0, 0);
+		new Bullets(this->_env, this->_x, this->_y, s2, 1, 50.0, 0);
 	}
 	else
 	{
-		std::string		s[] = { "|" };
-		new Bullets(this->_env, this->_x, this->_y, s, 1, 50.0, 0);
+		new Bullets(this->_env, this->_x, this->_y, s2, 1, 50.0, 0);
 	}
 }
 

@@ -163,61 +163,43 @@ void	Enemy::Fire()
 {
 	if (this->_type == 5)
 	{
-		std::string		s[] = { "|" };
 		if (this->_wall == 0)
-			new Bullets(this->_env, this->_x, this->_y + 1, s, 0, 18.0, 0);
+			new Bullets(this->_env, this->_x, this->_y + 1, s2, 0, 18.0, 0);
 		else if (this->_wall == 1)
-			new Bullets(this->_env, this->_x + 1, this->_y + 1, s, 0, 18.0, 0);
+			new Bullets(this->_env, this->_x + 1, this->_y + 1, s2, 0, 18.0, 0);
 		else if (this->_wall == 2)
-			new Bullets(this->_env, this->_x - 1, this->_y + 1, s, 0, 18.0, 0);
+			new Bullets(this->_env, this->_x - 1, this->_y + 1, s2, 0, 18.0, 0);
 	}
 	else if (this->_type == 4)
 	{
 		if ((rand() % (100 * this->_env->getRate()) < 70) && this->_life <= 35  * this->_env->getPlayers())
 		{
-			std::string		s1[] = { "/" };
-			std::string		s2[] = { "|" };
-			std::string		s3[] = { "\\" };
-			(void)s3;
 			new Bullets(this->_env, this->_x + 1, this->_y + 1, s1, 0, 17.0, 1);
 			new Bullets(this->_env, this->_x + 1, this->_y + 1, s2, 0, 18.0, 0);
 			new Bullets(this->_env, this->_x + 1, this->_y + 1, s2, 0, 16.0, 0);
 			new Bullets(this->_env, this->_x + 1, this->_y + 1, s2, 0, 16.0, 0);
-			new Bullets(this->_env, this->_x + 1, this->_y + 1, s2, 0, 17.0, 2);
+			new Bullets(this->_env, this->_x + 1, this->_y + 1, s3, 0, 17.0, 2);
 		}
 		else
 		{
-			std::string		s1[] = { "/" };
-			std::string		s2[] = { "|" };
-			std::string		s3[] = { "\\" };
-			(void)s3;
 			new Bullets(this->_env, this->_x, this->_y + 1, s1, 0, 17.0, 1);
 			new Bullets(this->_env, this->_x, this->_y + 1, s2, 0, 18.0, 0);
-			new Bullets(this->_env, this->_x, this->_y + 1, s2, 0, 17.0, 2);
+			new Bullets(this->_env, this->_x, this->_y + 1, s3, 0, 17.0, 2);
 		}
 	}
 	else if (this->_type == 3)
 	{
-		std::string		s1[] = { "/" };
-		std::string		s2[] = { "|" };
-		std::string		s3[] = { "\\" };
-		(void)s3;
 		new Bullets(this->_env, this->_x, this->_y + 1, s1, 0, 17.0, 1);
 		new Bullets(this->_env, this->_x, this->_y + 1, s2, 0, 18.0, 0);
-		new Bullets(this->_env, this->_x, this->_y + 1, s2, 0, 17.0, 2);
+		new Bullets(this->_env, this->_x, this->_y + 1, s3, 0, 17.0, 2);
 	}
 	else if (this->_type == 2)
 	{
-		std::string		s1[] = { "/" };
-		std::string		s2[] = { "\\" };
 		new Bullets(this->_env, this->_x, this->_y + 1, s1, 0, 18.0, 1);
-		new Bullets(this->_env, this->_x, this->_y + 1, s2, 0, 18.0, 2);
+		new Bullets(this->_env, this->_x, this->_y + 1, s3, 0, 18.0, 2);
 	}
 	else
-	{
-		std::string		s[] = { "|" };
-		new Bullets(this->_env, this->_x, this->_y + 1, s, 0, 18.0, 0);
-	}
+		new Bullets(this->_env, this->_x, this->_y + 1, s2, 0, 18.0, 0);
 }
 
 Enemy & Enemy::operator=( Enemy const & rhs )
