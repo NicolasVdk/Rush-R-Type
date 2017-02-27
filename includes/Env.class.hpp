@@ -14,6 +14,7 @@
 # define ENV_CLASS_HPP
 
 # include <iostream>
+# include <cstdlib>
 # include <string>
 # include <curses.h>
 # include <ctime>

@@ -27,6 +27,7 @@
 
 # include <iostream>
 # include <ctime>
+# include <cstdlib>
 # include <curses.h>
 # include "Env.class.hpp"
 # include "Player.class.hpp"

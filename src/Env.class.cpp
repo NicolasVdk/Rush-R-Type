@@ -16,6 +16,7 @@ Env::Env( void ) : collision(this)
 {
 	this->_players = 0;
 	this->_score = 0;
+	this->_enemys = 0;
 	this->init_shell();
 	this->_maxX = getmaxx(stdscr);
 	this->_maxY = getmaxy(stdscr);
